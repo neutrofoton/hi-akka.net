@@ -12,7 +12,7 @@ public class WhatsappNotificationActor: UntypedActor
         if (message.ToString() == "n")
             throw new NullReferenceException();
 
-        if (message.ToString() == "e")
+        if (message.ToString() == "a")
             throw new ArgumentException();
 
         if (string.IsNullOrEmpty(message.ToString()))
