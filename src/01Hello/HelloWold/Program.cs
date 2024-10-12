@@ -1,9 +1,13 @@
 ﻿using Akka.Actor;
 using HelloWold;
 
-ActorSystem actorSystem = ActorSystem.Create("system-actor");
-IActorRef actor = actorSystem.ActorOf(Props.Create<NotificationActor>(), "notification-actor");
+ActorSystem systemActor = ActorSystem.Create("system-actor");
 
-actor.Tell("Hello world");
+//Props prop = Props.Create(()=>new NotificationActor());
+
+//IActorRef notificationActor = systemActor.ActorOf(Props.Create<NotificationActor>(), "notification-actor");
+IActorRef notificationActor = systemActor.ActorOf<NotificationActor>("notification-actor");
+
+notificationActor.Tell("Hello world");
 
 Console.ReadLine();
