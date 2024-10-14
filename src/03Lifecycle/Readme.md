@@ -1,3 +1,4 @@
+The <code>PreRestart</code> method of base class look like:
 ```csharp
 protected virtual void PreRestart(Exception reason, object message)
 {
