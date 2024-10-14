@@ -19,3 +19,5 @@ IActorRef htmlDownloaderActor = systemActor.ActorOf<DownloadHtmlActor>("html-dow
 htmlDownloaderActor.Tell(new Uri("https://www.microsoft.com"));
 
 Console.ReadLine();
+
+systemActor.Terminate();
