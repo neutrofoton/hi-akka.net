@@ -1,7 +1,7 @@
 using System;
 using Akka.Actor;
 
-namespace HelloWold;
+namespace HelloWold.Actors;
 
 class NotificationActor : UntypedActor
 {
