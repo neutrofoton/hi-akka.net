@@ -15,6 +15,7 @@ IActorRef greetingActor = systemActor.ActorOf<GreetingActor>("greeting-actor");
 greetingActor.Tell("salam");
 
 IActorRef htmlDownloaderActor = systemActor.ActorOf<DownloadHtmlActor>("html-downloader-actor");
-htmlDownloaderActor.Tell("https://www.microsoft.com");
+//htmlDownloaderActor.Tell("https://www.microsoft.com");
+htmlDownloaderActor.Tell(new Uri("https://www.microsoft.com"));
 
 Console.ReadLine();

@@ -7,12 +7,11 @@ public class DownloadHtmlActor : ReceiveActor
 {
     public DownloadHtmlActor()
     {
-        ReceiveAsync<string>(async url => await GetPageHtmlAsync(url));
+        //ReceiveAsync<string>(async url => await GetPageHtmlAsync(url));
+        ReceiveAnyAsync(async obj => await GetPageGenericAsync(obj));
     }
-    public static async Task GetPageHtmlAsync(string url)
+    private static async Task GetPageHtmlAsync(string url)
     {
-        //var html = await new System.Net.WebClient().DownloadStringTaskAsync(url);
-        
          using var client = new HttpClient();
          var response = await client.GetAsync(url);
          var html = await response.Content.ReadAsStringAsync();
@@ -20,6 +19,15 @@ public class DownloadHtmlActor : ReceiveActor
         Console.WriteLine("\n=====================================");
         Console.WriteLine($"Data for {url}");
         Console.WriteLine(html.Trim().Substring(0, 100));
+    }
+    private static async Task GetPageGenericAsync(object obj)
+    {
+        if (obj is string || obj is Uri)
+        {
+            await GetPageHtmlAsync(obj.ToString());
+        }
+        else
+            throw new ArgumentNullException("Actor doesn't accept this kind of message");
     }
 }
 
