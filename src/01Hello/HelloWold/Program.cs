@@ -1,6 +1,7 @@
 ﻿using Akka.Actor;
 using HelloWold;
 using HelloWold.Actors;
+using HelloWold.Models;
 
 ActorSystem systemActor = ActorSystem.Create("system-actor");
 
@@ -12,7 +13,8 @@ notificationActor.Tell("Hello world");
 
 
 IActorRef greetingActor = systemActor.ActorOf<GreetingActor>("greeting-actor");
-greetingActor.Tell("salam");
+greetingActor.Tell("hello");
+greetingActor.Tell(new GreetingMessage("salam"));
 
 IActorRef htmlDownloaderActor = systemActor.ActorOf<DownloadHtmlActor>("html-downloader-actor");
 //htmlDownloaderActor.Tell("https://www.microsoft.com");
